@@ -35,10 +35,10 @@ app.get("/clientes/:id", async function(req,res){
 
 
 
-app.post("/clientes", (req,res)=>{
+app.post("/clientes", async function(req,res){
     console.log(req.body)
 
-    const stringDb = fs.readFileSync(pathDb)
+    const stringDb = await fs.readFile(pathDb)
     const parsedDb = JSON.parse(stringDb)
 
     parsedDb.push({
@@ -47,7 +47,7 @@ app.post("/clientes", (req,res)=>{
     })
     
     const newParsedDb = JSON.stringify(parsedDb, null, 4)
-    fs.writeFileSync(pathDb, newParsedDb)
+    fs.writeFile(pathDb, newParsedDb)
 
 
     return res.status(200).json({message: "Cliente creado."})
