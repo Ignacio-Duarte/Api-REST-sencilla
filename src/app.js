@@ -43,6 +43,7 @@ app.post("/clientes", async function(req,res){
 
     parsedDb.push({
         cliente: req.body.cliente,
+        localidad : req.body.localidad, 
         id: uuid()
     })
     
